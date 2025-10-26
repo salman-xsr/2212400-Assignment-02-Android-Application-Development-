@@ -9,9 +9,6 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,42 +17,49 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        // Find Reset Button
         Button btnReset = findViewById(R.id.btnReset);
+
+        // Reset button clears fields
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText etName = (EditText) findViewById(R.id.etName);
-                EditText etPassword = (EditText) findViewById(R.id.etPassword);
+                EditText etName = findViewById(R.id.etName);
+                EditText etPassword = findViewById(R.id.etPassword);
                 TextView tvMessage = findViewById(R.id.tvMessage);
+
                 etName.setText("");
                 etPassword.setText("");
                 tvMessage.setText("");
+
                 Toast.makeText(MainActivity.this, "Fields are cleared!", Toast.LENGTH_SHORT).show();
             }
         });
     }
+
+    // Login Button Click Function
     public void login(View v) {
         EditText etName = findViewById(R.id.etName);
-        String strName = etName.getText().toString();
+        String strName = etName.getText().toString().trim();
+
         EditText etPassword = findViewById(R.id.etPassword);
-        String strPassword = etPassword.getText().toString();
-        if(strName.equals("")) {
+        String strPassword = etPassword.getText().toString().trim();
+
+        if (strName.isEmpty()) {
             Toast.makeText(this, "Enter username", Toast.LENGTH_SHORT).show();
             return;
-        }
-        else if(strPassword.equals("")) {
+        } else if (strPassword.isEmpty()) {
             Toast.makeText(this, "Enter password", Toast.LENGTH_SHORT).show();
-        }
-        else {
-            // Hard-code username and password in if condition here for displaying login success or failed message.
-            // Later on you can modify this code and add database connectivity for login authentication.
-            TextView tvMessage = findViewById(R.id.tvMessage);
-            tvMessage.setText("Welcom " + strName + "!");
+            return;
+        } else {
+            // Hard-coded credentials (example)
+            if (strName.equals("admin") && strPassword.equals("1234")) {
+                TextView tvMessage = findViewById(R.id.tvMessage);
+                tvMessage.setText("Welcome " + strName + "!");
+            } else {
+                Toast.makeText(this, "Invalid username or password", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }
