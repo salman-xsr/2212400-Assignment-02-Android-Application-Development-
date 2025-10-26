@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Android Login App - Developer Guide
 
 This repository provides a complete technical overview and implementation details for the **Android Login App**.  
@@ -122,3 +123,6 @@ git push -u origin main
 **Author:** Muhammad Azhar  
 - *Email: [muhammadazhar@uaar.edu.pk](mailto:muhammadazhar@uaar.edu.pk)*  
 - *LinkedIn: [https://www.linkedin.com/in/azzzhar7/](https://www.linkedin.com/in/azzzhar7/)*
+=======
+# 2212400-Assignment-02-Android-Application-Development-
+>>>>>>> 55bb2777c8787d2db8198df11ce590dd1ccfc934
